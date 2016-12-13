@@ -1,0 +1,200 @@
+ler arquivos
+file = open("exemplo.txt",'r')
+content = file.read()
+content = file.readlines()
+file.seek(0)
+content=[i.rstrip("\n") for i in content]
+file.close()
+file = open("exemplo.txt",'w')
+file.write("Line 1")
+file.close()
+file.write("Line 1\n")
+l=["Line 1","Line 2","Line 3"]
+for iteim in l:
+	file.write(item+"\n")
+	
+R - only read
+R+ - read and write - file pointer placed at the beginning of the file
+w - write only - overwrites the file if exists
+w+ - read and write - overwrites the file if exists
+a - appending
+a - appending - pointer placed at the end of the file
+
+import datetime
+yesterday=datetime.datetime(YYYY,MM,DD,HH,MM,SS,mm)
+now=datetime.datetime.now()
+delta=now - yesterday
+delta.days
+delta.total_seconds
+
+strftime.org
+
+import date
+import time
+1st=[]
+for i in range(5):
+	1st.append(datetime.datetime.now())
+	time.sleep(1)
+	
+1st
+for i in 1st:
+	print(i)
+	
+import glob2
+import datetime
+
+filenames=glob2.glob("*.txt")
+
+with open(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")+".txt", 'w') as file:
+    for filename in filenames:
+        with open(filename,"r") as f:
+            file.write(f.read()+"\n")
+			
+import string
+string.ascii_letters
+string.ascii_lowercase
+
+import random
+help(random.choice)
+random.choice("mateus")
+
+import random, string
+vowels='aeiou'
+letter_input_1=input("what letter do you want? enter v for vowels, c for consonants, l for an letter: ")
+letter_input_2=input("what letter do you want? enter v for vowels, c for consonants, l for an letter: ")
+letter_input_3=input("what letter do you want? enter v for vowels, c for consonants, l for an letter: ")
+
+def generator():
+	if letter_input_1=='v':
+		letter1=random.choice(vowels)
+	elif letter_input_1=='c':
+		letter1=random.choice(consonants)
+	elif letter_input_1=='l':
+		letter1=random.choice(letters)
+	else:
+		letter=letter_input_1
+		
+	letter2=random.choice(string.ascii_letters)
+	letter3=random.choice(string.ascii_letters)
+	name=letter1+letter2+letter3
+	return(name)
+	
+print(generator())
+
+pandas.read_csv("http://pythonhow.com/supermarkets.csv")
+pandas.read_json("http://pythonhow.com/supermarkets.json")
+var.set_inde("Column")
+var.loc[:,]
+var.iloc[1:3,1:3]
+var.ix[3,4]
+var.drop
+
+len(var.index)
+var["Continent"=var.shape[0]*["North America"]
+var.T
+
+import geopy
+from geopy.geocoders import nominatim
+nom=nominatim()
+nom.geocode("3995 23rd st, San Francisco, CA 94114")
+n.longitude
+df["Coordinates"]=df["Address"].Apply(nom.geocode)
+df.Coordinates[0].latitude
+df["Latitude"]=df["Coordinates"].apply(lambda x: x.latitude if x != None else None)
+
+import numpy
+n=numpy.arange(27)
+n.reshape(3,3,3)
+
+
+import cv2
+im_g=cv2.imread("smallgray.png",0) - bgr
+im_g=cv2.imread("smallgray.png",1) - rgb - 3d
+cv2.imwrite("newsmallgray.png",im_g)
+for i in im_g.T:
+	print(i)
+for i in im_g.flat:
+	print(i)
+	
+ims=numpy.hstack({im_g,im_g,im_g})
+ims=numpy.vstack({im_g,im_g,im_g})
+1st=numpy.hsplit(ims,3)
+lst=numpy.vsplit(ims,3)
+
+
+how to build a map
+
+pip install folium
+pip install jinja2
+
+import folium
+import pandas
+
+dir(folium)
+df=pandas.read_csv("Volacanos_USA.txt")
+map=folium.map(location=[45.372,-121.697],zoom_start=10,tiles='Stamen Terrain')
+
+for lat,lon,name in zip(df['LAT'],df['LON'], df['NAME']):
+	map.simple_marker(location=[45.3288,-121.6625],popup=[NAME] ,marker_color='green' if elev in range (0,1000) else 'orange if elev in range (1000, 3000) else 'red')
+map
+map.create_map(path='test.html')
+
+entire world - remove tiles
+
+def color(elev):
+	if elev in range(0,1000):
+		col='green'
+	elif elev in range(1000,3000):
+		col='orange'
+	else:
+		col='red'
+	return col
+	
+	for lat,long,name,elev in zip(df['LAT'],df['LONG'],df['NAME'],df['ELEV']):
+		map.simple_marker(location=[lat,lon],popup=name,marker_color=color(elev))
+
+import pandas
+df=pandas.read_csv("Volcanoes_USA.txt")
+		
+df['ELEV'].mean()
+df['LAT'].mean()
+min(df['ELEV']
+	)
+max(df['ELEV'])-min(df['ELEV'])
+(max(df['ELEV'])-min(df['ELEV']))/3
+
+def color(elev):
+	minimum=int(min(df['ELEV']))
+	step=int((max(df['ELEV'])-min(df['ELEV']))/3)
+	if elev in range(minimum,minimum+step):
+		col='green'
+	elif elev in range(minimum+step,minimum+step*2):
+		col='orange'
+	else:
+		col='red'
+	return col
+	
+QGIS
+ogre.adc4gis.com
+zip file
+EPSG:4326
+save as .geojson
+
+fg=folium.FeatureGroup(name="Volcano Locations")
+	for lat,long,name,elev in zip(df['LAT'],df['LONG'],df['NAME'],df['ELEV']):
+	fg.add_child(folium.Marker(location=[lat,lon],popup=name,icon=folium.Icon(color=color(elev),icon_color='green')))
+
+map.add_child(folium.GeoJson(data=open('World_population.json').
+name='World Population'.
+style_function=lambda x: {'fillColor':'green' if x['properties']['PCP2005']}))
+map.save(outfit='test.html')
+
+import folium
+class map
+help(folium)
+
+map.add_child(folium.LayerControl())
+
+
+
+
